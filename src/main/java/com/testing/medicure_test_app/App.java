@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 
 /**
@@ -15,8 +16,12 @@ public class App
     public static void main( String[] args ) throws InterruptedException
     {
         System.out.println( "Welcome to Medicure Application!!!" );
+        
         //initialize the chrome driver
-        WebDriver driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        
+        WebDriver driver = new ChromeDriver(options);
 
         //open the medicure web application
         driver.get("http://18.221.166.176:8082/contact.html");
@@ -45,7 +50,6 @@ public class App
         // locate the send button and click
         WebElement sendButton = driver.findElement(By.xpath("/html/body/section/div/div[2]/div[1]/div/div[4]/button"));
         sendButton.click();
-        Thread.sleep(5000);
         
         // locate the response
         WebElement response = driver.findElement(By.xpath("/html/body/section/div/div[2]/div[1]/div/div[4]/p"));
